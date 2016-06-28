@@ -14,7 +14,7 @@ const tslint = require('gulp-tslint');
 const tsc = require('gulp-typescript');
 const uglify = require('gulp-uglify');
 const tsconfig = require('tsconfig-glob');
-
+const testTscConfig = require('./tests/tsconfig.json');
 const tscConfig = require('./tsconfig.json');
 
 
@@ -29,6 +29,10 @@ gulp.task('clean:dist:css', function () {
 
 gulp.task('clean:lib', function () {
   return del('public/lib/**/*');
+});
+
+gulp.task('clean:tests', function () {
+  return del('tests/**/*');
 });
 
 gulp.task('lint:ts', function () {
@@ -155,9 +159,29 @@ gulp.task('serve', ['watch:src'], function () {
   gulp.watch('server.js', server.start.bind(server));
 });
 
+// Compile .ts files unbundled for tests
+gulp.task('compile:specs', function() {
+  return gulp
+    .src([
+      "app/**/*.ts",
+      "typings/*.d.ts"
+    ])
+    .pipe(plumber({
+      errorHandler: function (err) {
+        console.error('>>> [tsc] Typescript tests compilation failed'.bold.green);
+        this.emit('end');
+      }}))
+    .pipe(tsc(testTscConfig.compilerOptions))
+    .pipe(gulp.dest('tests'));
+});
+
+gulp.task('test', ['compile:specs'], function() {
+  gulp.watch('app/**/*.ts', ['compile:specs']);
+});
+
 gulp.task('lint', ['lint:ts', 'lint:sass']);
 
-gulp.task('clean', ['clean:dist:js', 'clean:dist:css', 'clean:lib']);
+gulp.task('clean', ['clean:dist:js', 'clean:dist:css', 'clean:lib', 'clean:tests']);
 
 gulp.task('copy', function (callback) {
   runSequence('clean:lib', 'copy:libs', callback);

@@ -6,3 +6,6 @@ app/**/*.js
 public
 .vscode
 *.log
+tests
+!tests/tsconfig.json
+!tests/unit-tests.html

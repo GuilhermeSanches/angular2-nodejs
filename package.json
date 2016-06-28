@@ -50,14 +50,16 @@
     "concurrently": "^2.0.0",
     "lite-server": "^2.2.0",
     "typescript": "^1.8.10",
-    "typings": "^1.0.4"
+    "typings": "^1.0.4",
+    "jasmine-core": "2.4.1"
   },
   "scripts": {
     "start": "gulp",
     "postinstall": "typings install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "typings": "typings"
+    "typings": "typings",
+    "test": "gulp test && live-server --open=tests/unit-tests.html --port=9999"
   },
   "repository": {
     "type": "git",
