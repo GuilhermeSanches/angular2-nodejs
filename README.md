@@ -34,7 +34,7 @@ If no code has changed since your last build, you can just run:
 ## Testing with Jasmine
 * `npm run test`: watches and compiles files on changes, opens browser to see test runs
 
- ![Expect](http://github/guilhermesanches/angular2-nodejs/tests/test.png "Expect")
+ ![Expect](https://github.com/GuilhermeSanches/angular2-nodejs/blob/master/tests/test.PNG "Expect")
 
 * `gulp clean:tests`: optionally clear test build directory
 
