@@ -9,4 +9,4 @@ public
 !tests/tsconfig.json
 !tests/unit-tests.html
 !tests/test.png
-tests
+tests/**/*.js
