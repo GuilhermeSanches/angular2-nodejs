@@ -1,0 +1,8 @@
+node_modules
+typings
+.idea
+app/**/*.js.map
+app/**/*.js
+public
+.vscode
+*.log
