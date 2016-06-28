@@ -9,3 +9,4 @@ public
 tests
 !tests/tsconfig.json
 !tests/unit-tests.html
+!tests/test.png
