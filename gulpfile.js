@@ -84,7 +84,7 @@ gulp.task('minify:css', function () {
 
 
   gulp
-    .src('app/component/*.css')
+    .src('app/component/**/*.css')
     .pipe(cleanCSS())
     .pipe(gulp.dest('public/dist/css/component'));
 });
