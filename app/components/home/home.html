@@ -1,0 +1,10 @@
+<div class="list-group" role="alert">
+    <ul >
+        <li *ngFor="let name of names"> 
+            <a href="#" (click)="openName(name)"  class="list-group-item">{{name.name}}</a>
+            <p>{{name.age}}</p>
+            <p>{{name.address}}</p>
+        </li>
+    </ul>
+
+</div>

@@ -5,9 +5,7 @@ import { NameHome } from "./home.model";
 
 @Component({
     directives: [ROUTER_DIRECTIVES],
-    template: `<div class="list-group" role="alert"> 
- <a href="#" *ngFor="let name of names" class="list-group-item">{{name.name}}</a>
-    </div>`,
+    templateUrl: './home.html',
     providers: [ServiceHome]
 })
 export class HomeComponent {
@@ -19,14 +17,17 @@ export class HomeComponent {
     ngOnInit() {
         this.getNames();
     }
+
     getNames() {
         let that = this;
 
         this.serviceHome.getNames().subscribe(
-
-            data => {  this.names = data; console.log(this.names) },
-            err => console.error("erro"+err)
+            (data) => {
+                that.names = data;
+            },
+            (err) => {
+                console.error("erro" + err)
+            }
         );
     }
-    
 }

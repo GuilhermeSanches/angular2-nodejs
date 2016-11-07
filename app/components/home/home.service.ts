@@ -5,16 +5,17 @@ import { NameHome } from "./home.model";
 
 
 @Injectable()
-export class ServiceHome{
-     private namesUrl = 'home/names';
+export class ServiceHome {
+    private namesUrl = 'home/names';
     constructor(private http: Http) { }
 
-       getNames(): Observable<NameHome[]> {
+    getNames(): Observable<NameHome[]> {
         return this.http
             .get(this.namesUrl).map(this.extractData);
     }
-        private extractData(res: Response) {
-            console.log(res.text());
+
+    private extractData(res: Response) {
+        console.log(res.text());
         return res.json() || [];
     }
 }
