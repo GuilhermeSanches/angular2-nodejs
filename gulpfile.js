@@ -35,11 +35,11 @@ gulp.task('clean:tests', function () {
   return del('tests/**/*');
 });
 
-gulp.task('lint:ts', function () {
-  return gulp.src('app/**/*.ts')
-    .pipe(tslint())
-    .pipe(tslint.report('verbose', { emitError: false }));
-});
+// gulp.task('lint:ts', function () {
+//   return gulp.src('app/**/*.ts')
+//     .pipe(tslint())
+//     .pipe(tslint.report('verbose', { emitError: false }));
+// });
 
 gulp.task('compile:ts', function () {
   return gulp
@@ -179,7 +179,7 @@ gulp.task('test', ['compile:specs'], function() {
   gulp.watch('app/**/*.ts', ['compile:specs']);
 });
 
-gulp.task('lint', ['lint:ts', 'lint:sass']);
+// gulp.task('lint', ['lint:ts', 'lint:sass']);
 
 gulp.task('clean', ['clean:dist:js', 'clean:dist:css', 'clean:lib', 'clean:tests']);
 
@@ -187,7 +187,10 @@ gulp.task('copy', function (callback) {
   runSequence('clean:lib', 'copy:libs', callback);
 });
 gulp.task('scripts', function (callback) {
-  runSequence(['lint:ts', 'clean:dist:js'], 'compile:ts', 'bundle:js', 'minify:js', callback);
+  runSequence([
+            // 'lint:ts',
+            'clean:dist:js'], 
+            'compile:ts', 'bundle:js', 'minify:js', callback);
 });
 
 gulp.task('styles', function (callback) {
